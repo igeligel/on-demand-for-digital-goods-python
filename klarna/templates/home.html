@@ -1,26 +1,60 @@
+<!-- 
+Copyright 2019-present Klarna AB
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
 <html>
-    <head>
-        <title>Klarna On-Demand</title>
-    </head>
-    <body>
-        <h1>Klarna Checkout Example</h1>
-        <p>This is the smallest possible integration of Klarna Checkout.</p>
-        <form action='/purchase' method='POST' class='klarna-form'
-            data-api-key='{{ api_key }}' data-flow='purchase'
-            data-locale='en' data-amount='{{ amount }}'
-            data-currency='{{ currency }}'>
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <input type='hidden' name='reference' value='allthethings' />
-            <input type='hidden' name='currency' value='{{ currency }}' />
-            <input type='hidden' name='amount' value='{{ amount }}' />
-            <input type='hidden' name='name' value='something' />
-        </form>
-        <script src='https://ondemand-dg.playground.klarna.com/web/js/sdk.min.js'>
-        </script>
-        <script>
-            var onKlarnaSuccess = function(data) {
-                alert('Payment status: ' +  data.status);
-            };
-        </script>
-    </body>
+  <head>
+    <title>Klarna On-Demand</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+  />
+  <style>
+    .checkout {
+      display: flex;
+      margin-top: 100px;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <div class="checkout">
+      <h1>Klarna Checkout Example</h1>
+      <p>This is the smallest possible integration of Klarna Checkout.</p>
+      <form
+        action="/purchase"
+        method="POST"
+        class="klarna-form"
+        data-api-key="{{ api_key }}"
+        data-flow="purchase"
+        data-locale="en"
+        data-amount="{{ amount }}"
+        data-currency="{{ currency }}"
+      >
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <input type="hidden" name="reference" value="allthethings" />
+        <input type="hidden" name="currency" value="{{ currency }}" />
+        <input type="hidden" name="amount" value="{{ amount }}" />
+        <input type="hidden" name="name" value="something" />
+      </form>
+    </div>
+    <script src="https://ondemand-dg.playground.klarna.com/web/js/sdk.min.js"></script>
+    <script>
+      var onKlarnaSuccess = function(data) {
+        alert("Payment status: " + data.status);
+      };
+    </script>
+  </body>
 </html>
